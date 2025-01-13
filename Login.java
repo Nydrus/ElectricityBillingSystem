@@ -75,6 +75,7 @@ public class Login extends JFrame implements ActionListener {
         setVisible(true);
 
     }
+
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == b1) {
             try {
@@ -98,15 +99,16 @@ public class Login extends JFrame implements ActionListener {
                 System.out.println("error: " + e);
             }
         } else if (ae.getSource() == b2) {
-                this.setVisible(false);
-            } else if (ae.getSource() == b3) {
-                this.setVisible(false);
-                new Signup().setVisible(true);
-            }
-        }
-        public static void main (String[]args){
-            new Login().setVisible(true);
+            this.setVisible(false);
+        } else if (ae.getSource() == b3) {
+            this.setVisible(false);
+            new Signup().setVisible(true);
         }
     }
+
+    public static void main(String[] args) {
+        new Login().setVisible(true);
+    }
+}
 
 
