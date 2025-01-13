@@ -171,17 +171,17 @@ public class Project extends JFrame implements ActionListener {
 
         //Calculator//
 
-        ut2.setFont(new Font("monospaced", Font.PLAIN,12));
+        ut2.setFont(new Font("monospaced", Font.PLAIN, 12));
         ImageIcon icon9 = new ImageIcon(ClassLoader.getSystemResource("icon/icon9.png"));
-        Image image9 = icon9.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
+        Image image9 = icon9.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
         ut2.setIcon(new ImageIcon(image9));
         ut2.setMnemonic('X');
 
         //Web Browser//
 
-        ut3.setFont(new Font("monospaced", Font.PLAIN,12 ));
+        ut3.setFont(new Font("monospaced", Font.PLAIN, 12));
         ImageIcon icon10 = new ImageIcon(ClassLoader.getSystemResource("icon/icon10.png"));
-        Image image10 = icon10.getImage().getScaledInstance(20,20,Image.SCALE_DEFAULT);
+        Image image10 = icon10.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
         ut3.setIcon(new ImageIcon(image10));
         ut3.setMnemonic('W');
         ut3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, ActionEvent.CTRL_MASK));
@@ -191,5 +191,101 @@ public class Project extends JFrame implements ActionListener {
         ut2.addActionListener(this);
         ut3.addActionListener(this);
 
+        //Fifth Column//
+
+        JMenu exit = new JMenu("Logout");
+        JMenuItem ex = new JMenuItem("Logout");
+        exit.setForeground(Color.BLUE);
+
+        //Exit//
+
+        ex.setFont(new Font("monospaced", Font.PLAIN, 12));
+        ImageIcon icon11 = new ImageIcon(ClassLoader.getSystemResource("icon/icon11.png"));
+        Image image11 = icon11.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+        ex.setIcon(new ImageIcon(image11));
+        ex.setMnemonic('Z');
+        ex.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
+        ex.setBackground(Color.WHITE);
+
+        ex.addActionListener(this);
+
+        //-------------------------------------------------//
+
+        master.add(m1);
+        master.add(m2);
+        master.add(m3);
+        master.add(m4);
+
+        info.add(info1);
+        info.add(info2);
+
+        user.add(u1);
+        user.add(u3);
+
+        report.add(r1);
+
+        utility.add(ut1);
+        utility.add(ut2);
+        utility.add(ut3);
+
+        exit.add(ex);
+
+        if (person.equals("Admin")) {
+            mb.add(master);
+        } else {
+            mb.add(info);
+            mb.add(user);
+            mb.add(report);
+        }
+        mb.add(utility);
+        mb.add(exit);
+
+        setJMenuBar(mb);
+
+        setFont(new Font("Senserif", Font.BOLD, 16));
+        setLayout(new FlowLayout());
+        setVisible(false);
+    }
+
+    public void actionPerformed(ActionEvent ae) {
+        String msg = ae.getActionCommand();
+        if (msg.equals("Customer Details")) {
+            new CustomerDetails().setVisible(true);
+        } else if (msg.equals("New Customer")) {
+            new NewCustomer().setVisible(true);
+        } else if (msg.equals("Calculate Bill")) {
+            new CalculateBill().setVisible(true);
+        } else if (msg.equals("Pay Bill")) {
+            new PayBill(meter).setVisible(true);
+        } else if (msg.equals("Notepad")) {
+            try {
+                Runtime.getRuntime().exec("notepad.exe");
+            } catch (Exception e) {
+            }
+        } else if (msg.equals("Calculator")) {
+            try {
+                Runtime.getRuntime().exec("calc.exe");
+            }catch (Exception e){ }
+        } else if (msg.equals("Web Browser")){
+            try{
+                Runtime.getRuntime().exec("C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe");
+            }catch (Exception e) { }
+        } else if (msg.equals("Logout")) {
+            this.setVisible(false);
+            new Login().setVisible(true);
+        } else if (msg.equals("Generate Bill")) {
+            new GenerateBill(meter).setVisible(true);
+        }else if(msg.equals("Deposit Details")){
+            new DepositDetails().setVisible(true);
+        }else if (msg.equals("View Information")){
+            new ViewInformation(meter).setVisible(true);
+        }else if(msg.equals("Update Information")){
+            new UpdateInformation(meter).setVisible(true);
+        } else if (msg.equals("Bill Details")) {
+            new BillDetails(meter).setVisible(true);
+        }
+    }
+    public static void main(String[] args) {
+        new Project("","").setVisible(true);
     }
 }
