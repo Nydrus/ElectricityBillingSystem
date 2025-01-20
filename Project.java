@@ -265,27 +265,30 @@ public class Project extends JFrame implements ActionListener {
         } else if (msg.equals("Calculator")) {
             try {
                 Runtime.getRuntime().exec("calc.exe");
-            }catch (Exception e){ }
-        } else if (msg.equals("Web Browser")){
-            try{
+            } catch (Exception e) {
+            }
+        } else if (msg.equals("Web Browser")) {
+            try {
                 Runtime.getRuntime().exec("C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe");
-            }catch (Exception e) { }
+            } catch (Exception e) {
+            }
         } else if (msg.equals("Logout")) {
             this.setVisible(false);
             new Login().setVisible(true);
         } else if (msg.equals("Generate Bill")) {
             new GenerateBill(meter).setVisible(true);
-        }else if(msg.equals("Deposit Details")){
+        } else if (msg.equals("Deposit Details")) {
             new DepositDetails().setVisible(true);
-        }else if (msg.equals("View Information")){
+        } else if (msg.equals("View Information")) {
             new ViewInformation(meter).setVisible(true);
-        }else if(msg.equals("Update Information")){
+        } else if (msg.equals("Update Information")) {
             new UpdateInformation(meter).setVisible(true);
         } else if (msg.equals("Bill Details")) {
             new BillDetails(meter).setVisible(true);
         }
     }
+
     public static void main(String[] args) {
-        new Project("","").setVisible(true);
+        new Project("", "").setVisible(true);
     }
 }

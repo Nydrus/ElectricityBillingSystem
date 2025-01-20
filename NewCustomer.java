@@ -5,9 +5,10 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 
 public class NewCustomer extends JFrame implements ActionListener {
-    JLabel l1,l2,l3,l4,l5,l6,l7,l8,l11;
-    JTextField t1,t2,t3,t4,t5,t6,t7;
-    JButton b1,b2;
+    JLabel l1, l2, l3, l4, l5, l6, l7, l8, l11;
+    JTextField t1, t2, t3, t4, t5, t6, t7;
+    JButton b1, b2;
+
     NewCustomer() {
         setLocation(600, 200);
         setSize(700, 500);
@@ -99,8 +100,9 @@ public class NewCustomer extends JFrame implements ActionListener {
         long first = (ran.nextLong() % 1000000);
         l11.setText("" + Math.abs(first));
     }
-    public void actionPerformed(ActionEvent ae){
-        if(ae.getSource() == b1) {
+
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == b1) {
             String name = t1.getText();
             String meter = l11.getText();
             String address = t3.getText();
@@ -109,19 +111,19 @@ public class NewCustomer extends JFrame implements ActionListener {
             String email = t6.getText();
             String phone = t7.getText();
 
-            String q1 ="INSERT into customer values('"+name+"', '"+meter+"', '"+address+"', '"+city+"', '"+state+"', '"+email+"', '"+phone+"')";
-            String q2 = "INSERT into login values('"+meter+"', '', '', '')";
-            try{
+            String q1 = "INSERT into customer values('" + name + "', '" + meter + "', '" + address + "', '" + city + "', '" + state + "', '" + email + "', '" + phone + "')";
+            String q2 = "INSERT into login values('" + meter + "', '', '', '')";
+            try {
                 Conn c1 = new Conn();
                 c1.s.executeUpdate(q1);
                 c1.s.executeUpdate(q2);
                 JOptionPane.showMessageDialog(null, "Customer Details added successfully");
                 this.setVisible(false);
                 new MeterInfo(meter).setVisible(true);
-            }catch (Exception ex) {
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
-        }else if(ae.getSource() == b2){
+        } else if (ae.getSource() == b2) {
             this.setVisible(false);
         }
     }

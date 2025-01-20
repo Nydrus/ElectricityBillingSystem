@@ -6,19 +6,20 @@ import java.sql.ResultSet;
 public class CustomerDetails extends JFrame implements ActionListener {
     JTable t1;
     JButton b1;
-    String x[] = {"Customer Name","Meter Number","Address","City","State","Email","Phone"};
-    String y [][] = new String [40][8];
-    int i=0, j=0;
-    CustomerDetails(){
-        super("Customer Details");
-        setSize(1200,650);
-        setLocation(400,150);
+    String x[] = {"Customer Name", "Meter Number", "Address", "City", "State", "Email", "Phone"};
+    String y[][] = new String[40][8];
+    int i = 0, j = 0;
 
-        try{
+    CustomerDetails() {
+        super("Customer Details");
+        setSize(1200, 650);
+        setLocation(400, 150);
+
+        try {
             Conn c1 = new Conn();
-            String s1 ="SELECT * from customer";
+            String s1 = "SELECT * from customer";
             ResultSet rs = c1.s.executeQuery(s1);
-            while(rs.next()) {
+            while (rs.next()) {
                 y[i][j++] = rs.getString("name");
                 y[i][j++] = rs.getString("meter");
                 y[i][j++] = rs.getString("address");
@@ -27,22 +28,24 @@ public class CustomerDetails extends JFrame implements ActionListener {
                 y[i][j++] = rs.getString("email");
                 y[i][j++] = rs.getString("phone");
                 i++;
-                j=0;
+                j = 0;
             }
-            t1 = new JTable(y,x);
-        }catch(Exception e){
+            t1 = new JTable(y, x);
+        } catch (Exception e) {
             e.printStackTrace();
         }
         b1 = new JButton("Print");
-        add(b1,"South");
+        add(b1, "South");
         JScrollPane sp = new JScrollPane(t1);
         add(sp);
         b1.addActionListener(this);
     }
-    public void actionPerformed(ActionEvent ae){
-        try{
+
+    public void actionPerformed(ActionEvent ae) {
+        try {
             t1.print();
-        }catch(Exception e){}
+        } catch (Exception e) {
+        }
     }
 
     public static void main(String[] args) {
