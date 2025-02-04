@@ -71,7 +71,7 @@ public class CalculateBill  extends JFrame implements ActionListener {
                         l11.setText(rs.getString("name"));
                         l12.setText(rs.getString("address"));
                     }
-                }catch(Exception e){}
+                }catch(Exception ex){}
             }
         });
         t1 = new JTextField();
@@ -106,7 +106,7 @@ public class CalculateBill  extends JFrame implements ActionListener {
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/hicon2.jpg"));
         Image i2 = i1.getImage().getScaledInstance(180,270,Image.SCALE_DEFAULT);
         ImageIcon i3 = new ImageIcon(i2);
-        i4 = new JLabel(i3);
+        l4 = new JLabel(i3);
 
         l1.setFont(new Font("Senserif",Font.PLAIN,26));
         l1.setHorizontalAlignment(JLabel.CENTER);
