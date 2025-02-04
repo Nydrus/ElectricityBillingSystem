@@ -1,10 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
-
-
-
 
 
 public class DepositDetails extends JFrame implements ActionListener {
@@ -37,12 +35,77 @@ public class DepositDetails extends JFrame implements ActionListener {
 
         t1 = new JTable(y, x);
 
-        try{
+        try {
             Conn c = new Conn();
-            String s1 ="SELECT * from bill";
+            String s1 = "SELECT * from bill";
             ResultSet rs = c.s.executeQuery(s1);
 
-            t1.setModel(DbU);
+            t1.setModel(DbUtils.resultSetToTableModel(rs));
+
+            String str2 = "select * from customer";
+            rs = c.s.executeQuery(str2);
+            while (rs.next()) {
+                c1.add(rs.getString("meter"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        c1.setBounds(180, 20, 150, 20);
+        add(c1);
+
+        c2.setBounds(520, 20, 150, 20);
+        c2.add("January");
+        c2.add("February");
+        c2.add("March");
+        c2.add("April");
+        c2.add("May");
+        c2.add("June");
+        c2.add("July");
+        c2.add("August");
+        c2.add("September");
+        c2.add("October");
+        c2.add("November");
+        c2.add("December");
+        add(c2);
+
+        b1 = new JButton("Search");
+        b1.setBounds(20, 70, 80, 20);
+        b1.addActionListener(this);
+        add(b1);
+
+        b2 = new JButton("Print");
+        b2.setBounds(120, 70, 80, 20);
+        b2.addActionListener(this);
+        add(b2);
+
+        JScrollPane sp = new JScrollPane(t1);
+        sp.setBounds(0, 100, 700, 650);
+        add(sp);
+    }
+
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == b1) {
+            String str = "select * from bill where meter = '" + c1.getSelectedItem() + "' AND month = '" + c2.getSelectedItem() + "'";
+            try {
+                Conn c = new Conn();
+                ResultSet rs = c.s.executeQuery(str);
+                t1.setModel(DbUtils.resultSetToTableModel(rs));
+            } catch (Exception e) {
+            }
+        } else if (ae.getSource() == b2) {
+            try {
+                t1.print();
+            } catch (Exception e) {
+            }
+
         }
     }
+
+
+    public static void main(String[] args) {
+        new DepositDetails().setVisible(true);
+    }
+
 }
+
+
