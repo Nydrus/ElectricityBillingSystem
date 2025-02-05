@@ -55,65 +55,66 @@ public class GenerateBill extends JFrame implements ActionListener {
         b1.addActionListener(this);
 
         setLocation(750, 100);
+    }
 
-        public void actionPerformed (ActionEvent ae){
-            try {
-                Conn c = new Conn();
+    public void actionPerformed(ActionEvent ae) {
+        try {
+            Conn c = new Conn();
 
-                String month = c2.getSelectedItem();
-                t1.setText("\tReliance Power Limited\nElectricity Bill for the month of " + month + ", 2024\n\n\n");
+            String month = c2.getSelectedItem();
+            t1.setText("\tReliance Power Limited\nElectricity Bill for the month of " + month + ", 2024\n\n\n");
 
-                ResultSet rs = c.s.executeQuery("select * from customer where meter=" + meter);
+            ResultSet rs = c.s.executeQuery("select * from customer where meter=" + meter);
 
-                if (rs.next()) {
-                    t1.append("\n      Customer Name:" + rs.getString("name"));
-                    t1.append("\n      Meter Number:" + rs.getString("meter"));
-                    t1.append("\n      Address:     " + rs.getString("address"));
-                    t1.append("\n      State:       " + rs.getString("state"));
-                    t1.append("\n      City:        " + rs.getString("city"));
-                    t1.append("\n      Email:       " + rs.getString("email"));
-                    t1.append("\n      Phone Number: " + rs.getString("phone"));
-                    t1.append("\n-------------------------------------------------------------");
-                    t1.append("\n");
-                }
-
-                rs = c.s.executeQuery("select * from meter_info where meter_number = " + meter);
-
-                if (rs.next()) {
-                    t1.append("\n      Meter Location:" + rs.getString("meter_location"));
-                    t1.append("\n      Meter type:" + rs.getString("meter_type"));
-                    t1.append("\n      Phase Code:     " + rs.getString("phase_code"));
-                    t1.append("\n      Bill Type:       " + rs.getString("bill_type"));
-                    t1.append("\n      Days:        " + rs.getString("days"));
-                    t1.append("\n");
-                }
-                rs = c.s.executeQuery("select * from tax");
-                if (rs.next()) {
-                    t1.append("\n-------------------------------------------------------------");
-                    t1.append("\n\n");
-                    t1.append("\n   Cost per Unit:" + rs.getString("cost_per_unit"));
-                    t1.append("\n   Meter Rent:   " + rs.getString("meter"));
-                    t1.append("\n   Service Charge:" + rs.getString("service_charge"));
-                    t1.append("\n   Service Text: " + rs.getString("service_tax"));
-                    t1.append("\n   Swacch Bharat Cess:" + rs.getString("swacch_bharat_cess"));
-                    t1.append("\n   Fixed Tax" + rs.getString("fixed_tax"));
-                    t1.append("\n");
-                }
-                rs = c.s.executeQuery("select * from bill where meter=" + meter + " AND month = '" + c2.getSelectedItem() + "'");
-                if (rs.next()) {
-                    t1.append("\n   Current Month:" + rs.getString("month"));
-                    t1.append("\n   Units Consumed:   " + rs.getString("units"));
-                    t1.append("\n   Total Charges:" + rs.getString("total_bill"));
-                    t1.append("\n---------------------------------------------------------------");
-                    t1.append("\n   TOTAL PAYABLE:\t" + rs.getString("total_bill"));
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (rs.next()) {
+                t1.append("\n      Customer Name:" + rs.getString("name"));
+                t1.append("\n      Meter Number:" + rs.getString("meter"));
+                t1.append("\n      Address:     " + rs.getString("address"));
+                t1.append("\n      State:       " + rs.getString("state"));
+                t1.append("\n      City:        " + rs.getString("city"));
+                t1.append("\n      Email:       " + rs.getString("email"));
+                t1.append("\n      Phone Number: " + rs.getString("phone"));
+                t1.append("\n-------------------------------------------------------------");
+                t1.append("\n");
             }
-        }
 
+            rs = c.s.executeQuery("select * from meter_info where meter_number = " + meter);
+
+            if (rs.next()) {
+                t1.append("\n      Meter Location:" + rs.getString("meter_location"));
+                t1.append("\n      Meter type:" + rs.getString("meter_type"));
+                t1.append("\n      Phase Code:     " + rs.getString("phase_code"));
+                t1.append("\n      Bill Type:       " + rs.getString("bill_type"));
+                t1.append("\n      Days:        " + rs.getString("days"));
+                t1.append("\n");
+            }
+            rs = c.s.executeQuery("select * from tax");
+            if (rs.next()) {
+                t1.append("\n-------------------------------------------------------------");
+                t1.append("\n\n");
+                t1.append("\n   Cost per Unit:" + rs.getString("cost_per_unit"));
+                t1.append("\n   Meter Rent:   " + rs.getString("meter"));
+                t1.append("\n   Service Charge:" + rs.getString("service_charge"));
+                t1.append("\n   Service Text: " + rs.getString("service_tax"));
+                t1.append("\n   Swacch Bharat Cess:" + rs.getString("swacch_bharat_cess"));
+                t1.append("\n   Fixed Tax" + rs.getString("fixed_tax"));
+                t1.append("\n");
+            }
+            rs = c.s.executeQuery("select * from bill where meter=" + meter + " AND month = '" + c2.getSelectedItem() + "'");
+            if (rs.next()) {
+                t1.append("\n   Current Month:" + rs.getString("month"));
+                t1.append("\n   Units Consumed:   " + rs.getString("units"));
+                t1.append("\n   Total Charges:" + rs.getString("total_bill"));
+                t1.append("\n---------------------------------------------------------------");
+                t1.append("\n   TOTAL PAYABLE:\t" + rs.getString("total_bill"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-    public static void main (String[]args){
+    }
+
+
+    public static void main(String[] args) {
         new GenerateBill("").setVisible(true);
     }
 }
