@@ -89,7 +89,7 @@ public class PayBill extends JFrame implements ActionListener {
         try {
             Conn c = new Conn();
             ResultSet rs = c.s.executeQuery("select * from customer where meter = '" + meter + "'");
-            while rs.next() {
+            while (rs.next()) {
                 l11.setText(rs.getString("meter"));
                 l12.setText(rs.getString("name"));
             }
