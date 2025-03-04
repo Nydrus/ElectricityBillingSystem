@@ -1,3 +1,5 @@
+import org.apache.commons.dbutils.DbUtils;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -40,7 +42,8 @@ public class DepositDetails extends JFrame implements ActionListener {
             String s1 = "SELECT * from bill";
             ResultSet rs = c.s.executeQuery(s1);
 
-            t1.setModel(DbUtils.resultSetToTableModel(rs));
+            t1.setModel(Utils.buildTableModel(rs));
+
 
             String str2 = "select * from customer";
             rs = c.s.executeQuery(str2);
@@ -85,11 +88,19 @@ public class DepositDetails extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == b1) {
-            String str = "select * from bill where meter = '" + c1.getSelectedItem() + "' AND month = '" + c2.getSelectedItem() + "'";
+            String query = "select * from bill where meter = '" + c1.getSelectedItem() + "' AND month = '" + c2.getSelectedItem() + "'";
             try {
                 Conn c = new Conn();
-                ResultSet rs = c.s.executeQuery(str);
-                t1.setModel(DbUtils.resultSetToTableModel(rs));
+                PreparedStatement stmt = c.c.prepareStatement("select * from bill where meter = '" + c1.getSelectedItem() + "' AND month = '" + c2.getSelectedItem() + "'");
+
+                stmt.setString(1, c1.getSelectedItem()); //Set meter number
+                stmt.setString(2, c2.getSelectedItem()); //Set month
+
+                ResultSet rs = c.s.executeQuery(query); //Execute Query
+                t1.setModel(Utils.buildTableModel(rs)); //Populate table
+                rs.close();
+                stmt.close();
+                c.c.close();
             } catch (Exception e) {
             }
         } else if (ae.getSource() == b2) {
