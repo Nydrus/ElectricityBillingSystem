@@ -62,7 +62,7 @@ public class GenerateBill extends JFrame implements ActionListener {
             Conn c = new Conn();
 
             String month = c2.getSelectedItem();
-            t1.setText("\tReliance Power Limited\nElectricity Bill for the month of " + month + ", 2024\n\n\n");
+            t1.setText("\tReliance Power Limited\nElectricity Bill for the month of " + month + ", 2025\n\n\n");
 
             ResultSet rs = c.s.executeQuery("select * from customer where meter=" + meter);
 
