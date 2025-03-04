@@ -162,7 +162,7 @@ public class Project extends JFrame implements ActionListener {
 
         //Calender//
         ut1.setFont(new Font("monospaced", Font.PLAIN, 12));
-        ImageIcon icon8 = new ImageIcon(ClassLoader.getSystemResource("icon/icon12-png"));
+        ImageIcon icon8 = new ImageIcon(ClassLoader.getSystemResource("icon/icon12.png"));
         Image image8 = icon1.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
         ut1.setIcon(new ImageIcon(image8));
         ut1.setMnemonic('C');
@@ -282,7 +282,7 @@ public class Project extends JFrame implements ActionListener {
         } else if (msg.equals("View Information")) {
             new ViewInformation(meter).setVisible(true);
         } else if (msg.equals("Update Information")) {
-            new UpdateInformation(meter).setVisible(true);
+       //     new UpdateInformation(meter).setVisible(true);
         } else if (msg.equals("Bill Details")) {
             new BillDetails(meter).setVisible(true);
         }
