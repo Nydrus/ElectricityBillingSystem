@@ -46,7 +46,7 @@ public class Login extends JFrame implements ActionListener {
         b1.setBounds(330, 160, 100, 20);
         add(b1);
 
-        ImageIcon ic2 = new ImageIcon(ClassLoader.getSystemResource("icon/cancel.png"));
+        ImageIcon ic2 = new ImageIcon(ClassLoader.getSystemResource("icon/cancel.jpg"));
         Image i2 = ic2.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
         b2 = new JButton("Cancel", new ImageIcon(i2));
         b2.setBounds(450, 160, 100, 20);
@@ -61,7 +61,7 @@ public class Login extends JFrame implements ActionListener {
         b2.addActionListener(this);
         b3.addActionListener(this);
 
-        ImageIcon ic3 = new ImageIcon(ClassLoader.getSystemResource("icon/second.png"));
+        ImageIcon ic3 = new ImageIcon(ClassLoader.getSystemResource("icon/second.jpg"));
         Image i3 = ic3.getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT);
         ImageIcon icc3 = new ImageIcon(i3);
         l3 = new JLabel(icc3);
