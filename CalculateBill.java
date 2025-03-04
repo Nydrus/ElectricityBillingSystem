@@ -103,7 +103,7 @@ public class CalculateBill  extends JFrame implements ActionListener {
         b2.setBackground(Color.BLACK);
         b2.setForeground(Color.WHITE);
 
-        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/hicon2.jpg"));
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/icon2.png"));
         Image i2 = i1.getImage().getScaledInstance(180,270,Image.SCALE_DEFAULT);
         ImageIcon i3 = new ImageIcon(i2);
         l4 = new JLabel(i3);
