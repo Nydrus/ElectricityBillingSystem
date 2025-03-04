@@ -22,7 +22,8 @@ public class BillDetails extends JFrame {
             String s1 = "select * from bill where meter = " + meter;
             ResultSet rs = c.s.executeQuery(s1);
 
-            t1.setModel(DbUtils.resultSetToTableModel(rs));
+            t1.setModel(Utils.buildTableModel(rs));
+
         } catch (Exception e) {
             e.printStackTrace();
         }
